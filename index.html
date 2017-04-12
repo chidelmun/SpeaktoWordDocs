@@ -27,8 +27,37 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-cyan.min.css" />
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="778986800644-hejh113ocl182a58okg6mshii6m2otf0.apps.googleusercontent.com">
   </head>
   <body class="" id="grid">
+<script type="text/javascript">
+    if (auth2.isSignedIn.get()) {
+        alert("Signed In");
+    }else{
+      alert("Please Login");
+    }
+
+</script>
+
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+  <script type="text/javascript">
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+        });
+      }
+    }
+
+  </script>
     <div class="browser-landing" id="main">
       <div class="compact marquee-stacked" id="marquee">
         <div class="marquee-copy">
@@ -104,6 +133,7 @@
       <a class="mdl-navigation__link" href="">Open Document</a>
       <a class="mdl-navigation__link" href="">Import Document</a>
       <a class="mdl-navigation__link" href="">Download As...</a>
+
     </nav>
   </div>
   <main class="mdl-layout__content">
@@ -119,6 +149,7 @@
   </div>
 
 
+
         <div class="compact marquee" id="div_language">
          <center> <select id="select_language" onchange="updateCountry()">
             </select>&nbsp;&nbsp; <select id="select_dialect">
@@ -127,7 +158,18 @@
         </div>
       </div>
     </div>
+    <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
      <script>
+
+        // function onSignIn(googleUser) {
+        //     var profile = googleUser.getBasicProfile();
+        //     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        //     console.log('Name: ' + profile.getName());
+        //     console.log('Image URL: ' + profile.getImageUrl());
+        //     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        //   }
+
+
             var chrmMenuBar = new chrm.ui.MenuBar();
                   chrmMenuBar.decorate('nav');
                   var chrmLogo = new chrm.ui.Logo('logo');
